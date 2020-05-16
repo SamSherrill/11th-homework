@@ -41,18 +41,25 @@ router.post("/notes", (req, res) => {
 // `id` property, and then rewrite the notes to the `db.json` file.
 
 router.delete("/notes/:id", (req, res) => {
-    console.log("req.params in delete route");
+    console.log("req.params in delete route 1st, then .id 2nd");
     console.log(req.params);
+    console.log(req.params.id);
     var noteData = fs.readFileSync("./db/db.json", "utf-8");
     var notesArray = JSON.parse(noteData);
-    notesArray.filter((note) => {
-        console.log(req.params.id);
-        console.log(note.id);
-        if (note.id !== parseInt(req.params.id)) {
-            return true
-        };
-    });
+
+    // This function is primed to be use by filter() to return all
+    // objects in the DB, except the one that has an id equal to
+    // req.params.id
+    function filterOutById(note) {
+        return note.id !== parseInt(req.params.id);
+    };
+
+    // Filter called here, with the new notes array equally the
+    // old notes array, minus the one object filtered out 
+    notesArray = notesArray.filter(filterOutById);
+
     notesArray = JSON.stringify(notesArray);
+    console.log("Notes array logged below:")
     console.log(notesArray);
     fs.writeFileSync("./db/db.json", notesArray);
     res.json(true);
