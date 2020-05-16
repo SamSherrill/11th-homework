@@ -4,6 +4,8 @@
 
 This application can be used to write, save, and delete notes. This application uses an express backend, and saves and retrieves note data from a JSON file.
 
+![app preview](./screenshots/notetaker-preview.jpg)
+
 ## Development Notes
 
 The backend connects to the front end in the following ways:
@@ -48,6 +50,6 @@ Application allows users to delete previously saved notes.
 
 ## Links
 
-The deployed application
+The deployed application: [https://gt-notetaker-practice.herokuapp.com/](https://gt-notetaker-practice.herokuapp.com/)
 
-The GitHub repository
+The GitHub repository: [https://github.com/SamSherrill/11th-homework](https://github.com/SamSherrill/11th-homework)
